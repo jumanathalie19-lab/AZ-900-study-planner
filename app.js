@@ -7,8 +7,8 @@
 //   generatePlan  ->  "./planner.js"
 //   db functions  ->  "./db.js"
 //   explainTopic  ->  your small client for the Supabase "explain" function
-import { generatePlan } from "./stubs/planner.js";
-import { savePlan, loadPlan, setTaskDone, loadTopics } from "./stubs/db.js";
+ import { generatePlan } from "./planner.js";
+import { savePlan, loadPlan, setTaskDone, loadTopics } from "./db.js";
 import { explainTopic } from "./stubs/explain.js";
 // =====================================================================
 
