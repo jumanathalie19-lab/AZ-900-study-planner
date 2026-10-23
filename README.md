@@ -5,7 +5,7 @@
 Built for the **Vibe Coding Hackathon: AZ-900 Exam Prep Edition** (#1MillionDevs).
 Challenge: **Personal Study Planner**.
 
-**Live prototype:** [link] | **Demo video:** [link] | **Pitch deck:** [link]
+**Live prototype:** [link] | **Demo video:** [link] | **Pitch deck:** [[link](https://docs.google.com/presentation/d/1tGRvx8bkPHRUYv3NVKALD6-CRKfhPvdb/edit?usp=sharing&ouid=112648616768316788820&rtpof=true&sd=true)]
 
 ## The problem
 When we studied for AZ-900, we kept mixing up Azure service names, and we never knew whether we were actually ready. Learners often know their exam date but not how to spread their study time or where to focus.
@@ -33,7 +33,7 @@ Our AI tutor's system prompt and every iteration are logged in [`prompts.md`](pr
 1. Clone the repo.
 2. Create a Supabase project and run `schema.sql`.
 3. Add your Supabase URL and anon key in [file, as per your setup].
-4. Deploy the edge function and set the secret `LLM_API_KEY` (never commit keys).
+4. Deploy the edge function and set the secret `LLM_API_KEY` 
 5. Open `index.html` or deploy to [hosting].
 
 ## Content and rules
@@ -48,9 +48,9 @@ A `certification` field and topic CSVs mean other exams (such as AZ-104 or AI-90
 Readiness score from self-check questions, auto-reschedule for missed days, calendar export, more languages.
 
 ## Contributions
-- [Name]: frontend and integration
-- [Name]: planner logic and database
-- [Name]: AI function and prompt engineering
-- [Name]: content (topics, explanations, Learn links)
-- [Name]: pitch, demo, README and testing
-*(Edit so each line matches what that person actually did.)*
+- Victor: frontend and integration
+- Nathalie: planner logic and database
+- Mark: AI function and prompt engineering
+- George: content (topics, explanations, Learn links)
+- Nathalie,George, Mark and Victor: pitch, demo, README and testing
+
