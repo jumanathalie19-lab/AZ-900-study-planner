@@ -5,7 +5,7 @@
 Built for the **Vibe Coding Hackathon: AZ-900 Exam Prep Edition** (#1MillionDevs).
 Challenge: **Personal Study Planner**.
 
-**Live prototype:** [link] | **Demo video:** [link] | **Pitch deck:** [[link](https://docs.google.com/presentation/d/1tGRvx8bkPHRUYv3NVKALD6-CRKfhPvdb/edit?usp=sharing&ouid=112648616768316788820&rtpof=true&sd=true)]
+**Live prototype:** [link] | **Demo video:** [link] | **Pitch deck:** [(https://docs.google.com/presentation/d/1tGRvx8bkPHRUYv3NVKALD6-CRKfhPvdb/edit?usp=sharing&ouid=112648616768316788820&rtpof=true&sd=true)]
 
 ## The problem
 When we studied for AZ-900, we kept mixing up Azure service names, and we never knew whether we were actually ready. Learners often know their exam date but not how to spread their study time or where to focus.
