@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your plan – AZ-900 Study Planner (Unofficial)</title>
+  <meta name="description" content="Your day-by-day AZ-900 study plan. Unofficial study tool, not affiliated with Microsoft.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%231d5fa8' d='M18 50a12 12 0 0 1-1-24 16 16 0 0 1 31 3 11 11 0 0 1-1 21z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- supabase-js from a CDN. Not needed for the stubs. See the note in index.html. -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+</head>
+<body data-page="plan">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <main id="main" class="container">
+    <header class="topbar">
+      <div class="brand">
+        <svg class="cloud-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <path d="M18 50a12 12 0 0 1-1-24 16 16 0 0 1 31 3 11 11 0 0 1-1 21z"/>
+        </svg>
+        <h1>AZ-900 Study Planner</h1>
+        <span class="badge-unofficial">Unofficial</span>
+      </div>
+    </header>
+
+    <!-- Loading / empty / error messages are rendered here -->
+    <div id="state" class="state" aria-live="polite"></div>
+
+    <div id="plan-view" hidden>
+      <section class="card summary" aria-labelledby="countdown">
+        <div class="ring" id="ring" role="progressbar" aria-label="Overall progress"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <circle class="ring-track" cx="50" cy="50" r="42"/>
+            <circle class="ring-fill" id="ring-fill" cx="50" cy="50" r="42"/>
+          </svg>
+          <div class="ring-label" id="ring-label">0%</div>
+        </div>
+        <div class="summary-text">
+          <h2 id="countdown">…</h2>
+          <p class="muted" id="progress-text"></p>
+          <p class="status" id="status" role="status"></p>
+        </div>
+      </section>
+
+      <div id="warning" class="banner warn" role="status" hidden>
+        <span id="warning-text"></span>
+        <button type="button" class="btn small ghost" id="warning-dismiss">Dismiss</button>
+      </div>
+
+      <section class="card" aria-labelledby="domains-heading">
+        <h2 id="domains-heading" class="section-title">Progress by area</h2>
+        <ul class="bars" id="domain-bars"></ul>
+      </section>
+
+      <section aria-labelledby="days-heading">
+        <h2 id="days-heading" class="section-title spaced">Your day-by-day plan</h2>
+        <div id="days"></div>
+      </section>
+
+      <div class="new-plan">
+        <button type="button" class="btn secondary" id="new-plan-btn">Start a new plan</button>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- "Explain this simply" modal. <dialog> gives us focus trapping and Esc-to-close for free. -->
+  <dialog id="explain-dialog" class="modal" aria-labelledby="explain-title">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <h2 id="explain-title">Explain this simply</h2>
+          <p class="muted" id="explain-sub"></p>
+        </div>
+        <button type="button" class="icon-btn" id="explain-close" aria-label="Close explanation">&times;</button>
+      </div>
+
+      <div id="explain-body" class="explain-text" aria-live="polite"></div>
+      <p class="note" id="explain-note" hidden></p>
+      <p class="note">AI explanations may contain errors. Verify on Microsoft Learn.</p>
+
+      <div class="modal-actions">
+        <button type="button" class="btn secondary" id="explain-copy" disabled>Copy</button>
+        <button type="button" class="btn primary" id="explain-done">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <p>Unofficial study tool. Not affiliated with or endorsed by Microsoft. Content is original. Always verify with Microsoft Learn.</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
