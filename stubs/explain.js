@@ -1,27 +1,41 @@
-// STUB explain client. Returns fake text after a short delay. No network, no key.
-// Contract response shape: { text: string, source: "ai" }
+// explain-client.js (UNOFFICIAL AZ-900 Study Planner)
+// Calls the real Supabase Edge Function "explain" (see CONTRACT.md).
+// Replaces the stub in stubs/explain.js. Same signature, so app.js needs only one import change.
 //
-// Test switches (add to the plan page URL):
-//   ?stub=explain-fail   throws, like an HTTP 500, so you see the offline fallback
-//   ?stub=explain-slow   takes 15 s, so you can watch the 10-second timeout fire
+// The publishable key is meant to be public (it is safe in the browser).
+// NEVER put the Gemini key (LLM_API_KEY), an sb_secret_ key or the service_role key in this file.
+//
+// If db.js already holds your Supabase URL and publishable key, use the same values here.
 
-const mode = () => new URLSearchParams(window.location.search).get("stub");
+const SUPABASE_URL = "https://jnakgmrrextqqtyjixqk.supabase.co";
+const PUBLISHABLE_KEY = "sb_publishable_JssEjjP5gxa3qQ9f84Q0kQ_CERzmhx-";
+const FUNCTION_URL = `${SUPABASE_URL}/functions/v1/explain`;
 
-/** Wait `ms`, but stop early (reject) if the AbortSignal fires. */
-function sleep(ms, signal) {
-  return new Promise((resolve, reject) => {
-    const timer = setTimeout(resolve, ms);
-    signal?.addEventListener("abort", () => { clearTimeout(timer); reject(new DOMException("Aborted", "AbortError")); });
-  });
-}
-
+/**
+ * @param {{ topic: string, domain: string, language: "en" | "sw" }} request
+ * @param {AbortSignal} [signal] app.js aborts this after 10 seconds
+ * @returns {Promise<{ text: string, source: string }>}
+ * Throws on ANY problem, so app.js can show the topic's offline fallback_explanation.
+ */
 export async function explainTopic({ topic, domain, language }, signal) {
-  await sleep(mode() === "explain-slow" ? 15000 : 900, signal);
-  if (mode() === "explain-fail") throw new Error("explain failed: 500");
+  const res = await fetch(FUNCTION_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: PUBLISHABLE_KEY,
+      Authorization: `Bearer ${PUBLISHABLE_KEY}`,
+    },
+    body: JSON.stringify({ topic, domain, language }),
+    signal,
+  });
 
-  const text = language === "sw"
-    ? `(Jibu la majaribio) ${topic} ni sehemu ya "${domain}". Fikiria kama duka la mtaani: unalipia unachotumia tu. Verify on Microsoft Learn: ${topic}`
-    : `(Stub answer) "${topic}" belongs to "${domain}". Think of a neighbourhood shop: you only pay for what you actually use. This is placeholder text so you can test the modal. Verify on Microsoft Learn: ${topic}`;
+  if (!res.ok) {
+    throw new Error(`explain returned HTTP ${res.status}`);
+  }
 
-  return { text, source: "ai" };
+  const data = await res.json();
+  if (typeof data?.text !== "string" || data.text.trim() === "") {
+    throw new Error("explain returned no text");
+  }
+  return { text: data.text, source: data.source ?? "ai" };
 }
