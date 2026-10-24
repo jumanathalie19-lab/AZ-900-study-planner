@@ -9,7 +9,7 @@
 //   explainTopic  ->  your small client for the Supabase "explain" function
  import { generatePlan } from "./planner.js";
 import { savePlan, loadPlan, setTaskDone, loadTopics } from "./db.js";
-import { explainTopic } from "./stubs/explain.js";
+import { explainTopic } from "./explain.js";
 // =====================================================================
 
 // ---------- Constants (from CONTRACT.md) ----------
